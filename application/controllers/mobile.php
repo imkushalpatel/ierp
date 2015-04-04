@@ -10,23 +10,38 @@
 			$this->load->helper('html');
 			$this->load->helper('url');
 		}
-		function getprojects()
+		function Login()
 		{
-			$this->load->model('listmodel');
-			$data = $this->listmodel->get_projects();
+			if(isset($_POST['user']) && isset($_POST['pass'])){
+			$user=$_POST['user'];
+			$pass=$_POST['pass'];
+			$company=1;
+			$this->load->model('loginmodel');
+			$data=$this->loginmodel->login_check($user,$pass,$company);
+			
 			echo json_encode($data);
+			}
 		}
-		function getprojectheads($proj='')
-		{
-			//$proj=$_GET["proj"];
-			$this->load->model('listmodel');
-			$data=$this->listmodel->get_heads($proj);
-			echo json_encode($data);
-		}
-		function getcategory($proj='')
+		
+		function getProjectsList()
 		{
 			$this->load->model('listmodel');
-			$data=$this->listmodel->get_category($proj);
+			$data = $this->listmodel->projectslist();
+			$data1['ProjectList']=$data;
+			echo json_encode($data1);
+		}
+		function getProjectHeadsList($projectid)
+		{
+			//$proj=$_POST["projid"];
+			$this->load->model('listmodel');
+			$data=$this->listmodel->projectheadslist($projectid);
+			$data1['ProjectHeadsList']=$data;
+			echo json_encode($data1);
+		}
+		function getCategoryList($projectid='')
+		{
+			$this->load->model('listmodel');
+			$data=$this->listmodel->categorylist($projectid);
 			echo json_encode($data);
 		}
 		function getlocation($proj='')
@@ -53,16 +68,16 @@
 			$data=$this->listmodel->get_daylist($proj);
 			echo json_encode($data);
 		}
-		function getdelaylistproj($proj='')
+		function getdelaylistproj($proj='',$from='',$to='')
 		{
 			$this->load->model('listmodel');
-			$data=$this->listmodel->get_delayproj($proj);
+			$data=$this->listmodel->get_delayproj($proj,$from,$to);
 			echo json_encode($data);
 		}
-		function getdelaylistcat($cat='')
+		function getdelaylistcat($cat='',$from='',$to='')
 		{
 			$this->load->model('listmodel');
-			$data=$this->listmodel->get_delaycat($cat);
+			$data=$this->listmodel->get_delaycat($cat,$from,$to);
 			echo json_encode($data);
 		}
 		function getissues()

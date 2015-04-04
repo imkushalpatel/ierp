@@ -7,97 +7,68 @@ class listmodel extends CI_Model
 			
 			
 		}
-		function get_projects()
+		function projectslist()
 		{
 			$data=array();
 			
 			$this->load->database();
-			$this->db->select('OrderId,ProjectName');
-			$this->db->from('ordermaster');
-			$query = $this->db->get();
-			$result = $query->result();
-			$i=0;
-			while(count($result) > $i)
-		{
-			//$data['id']=$result[$i]->ProjectCode;
-			//$data['name']=$result[$i]->OrderId;
-			$list[]=array($i+1=>$result[$i]->ProjectName);
-			//$list[]=array('id'=>$result[$i]->OrderId);
-			$i++;
-		}
-		$data['projects']=$list;
+			$this->db->distinct();
 		
-		return $data;
+		$this->db->select('OrderId as ProjectId, ProjectName');
+		
+		$this->db->from('ordermaster');
+		
+		$this->db->where('IfProjectClosed', 0);
+		$this->db->where('ParentOrderId', 0);
+		
+		$this->db->order_by('ProjectName','ASC');
+		
+		$query = $this->db->get();
+		
+		return $query->result();
+	
 		}
-		function get_heads($proj='')
+		function projectheadslist($projectid='')
 		{
 			$this->load->database();
 			$this->db->distinct('UserId');
+			$this->db->order_by('associatemaster.FirstName','ASC');
+			$this->db->select('associatemaster.AssociateId');
 			$this->db->select('concat(associatemaster.FirstName," ",associatemaster.LastName) as Name',false);
+			
 			$this->db->from('profileprojectmapping');
-			$this->db->where('ordermaster.ProjectName',$proj);
+			$this->db->where('ordermaster.OrderId',$projectid);
 			$this->db->join('ordermaster','ordermaster.OrderId=profileprojectmapping.ProjectId');
 			$this->db->join('associatemaster','associatemaster.AssociateId=profileprojectmapping.UserId');
 			$query = $this->db->get();
-			$result = $query->result();
+			return  $query->result();
 			//var_dump($result);
-			$i=0;
 			
-			while(count($result) > $i)
-			{
-				$list[]=array($i+1=>$result[$i]->Name);
-				
-				$i++;
-			}
-			$data[$proj]=$list;
-		
-			return  $data;
 		}
-		function get_category($proj='')
+		function categorylist($projectid='')
 		{
 			$this->load->database();
-			//$this->db->distinct('UserId');
-			$this->db->select('categorymaster.CategoryName');
+			$this->db->order_by('categorymaster.CategoryName','ASC');
+			$this->db->select('categorymaster.CategoryId,categorymaster.CategoryName');
 			$this->db->from('categorymaster');
-			$this->db->where('ordermaster.ProjectName',$proj);
+			$this->db->where('ordermaster.OrderId',$projectid);
 			$this->db->join('ordermaster','ordermaster.OrderId=categorymaster.OrderId');
-			//$this->db->join('associatemaster','associatemaster.AssociateId=profileprojectmapping.UserId');
 			$query = $this->db->get();
-			$result = $query->result();
-			$i=0;
+			return $query->result();
 			
-			while(count($result) > $i)
-			{
-				$list[]=array($i+1=>$result[$i]->CategoryName);
-				
-				$i++;
-			}
-			$data[$proj]=$list;
-		
-			return  $data;
 		}
-		function get_location($proj='')
+		function locationlist($projectid='')
 		{
 			$this->load->database();
-			//$this->db->distinct('UserId');
+			
 			$this->db->select('locationmaster.LocationName');
 			$this->db->from('locationmaster');
-			$this->db->where('ordermaster.ProjectName',$proj);
+			$this->db->where('ordermaster.OrderId',$projectid);
 			$this->db->join('ordermaster','ordermaster.OrderId=locationmaster.OrderId');
-			//$this->db$->join('associatemaster','associatemaster.AssociateId=profileprojectmapping.UserId');
+			
 			$query = $this->db->get();
-			$result = $query->result();
-			$i=0;
-				
-			while(count($result) > $i)
-			{
-				$list[]=array($i+1=>$result[$i]->LocationName);
-		
-				$i++;
-			}
-			$data[$proj]=$list;
-		
-			return  $data;
+			return $query->result();
+			
 		}
 		function get_daylist($proj='')
 		{
@@ -161,7 +132,7 @@ class listmodel extends CI_Model
 				$data1['status']=false;
 			return $data1;
 		}
-		function get_delayproj($proj='')
+		function get_delayproj($proj='',$from='',$to='')
 		{
 			$this->load->database();
 			$this->db->order_by('TypeOfIssue','asc');
@@ -171,6 +142,14 @@ class listmodel extends CI_Model
 			if ($proj!='ALL') {
 				$this->db->join('ordermaster','ordermaster.OrderId=dailyworkmaster.OrderId');
 				$this->db->where('ordermaster.ProjectName',$proj);
+			}
+			if($from!='')
+			{
+				$this->db->where('dailyworkmaster.Date >=',$from);
+			}
+			if($to!='')
+			{
+				$this->db->where('dailyworkmaster.Date <=',$to);
 			}
 			$query=$this->db->get();
 			$result=$query->result();
@@ -209,7 +188,7 @@ class listmodel extends CI_Model
 				$data['status']=false;
 				return $data;	
 		}
-		function get_delaycat($cat='')
+		function get_delaycat($cat='',$from='',$to='')
 		{
 			$this->load->database();
 			$this->db->order_by('dailyworkmaster.OrderId','asc');
@@ -223,6 +202,15 @@ class listmodel extends CI_Model
 				else 
 				$this->db->where('dailyworkmaster.TypeOfIssue',$cat);
 			}
+			if($from!='')
+			{
+				$this->db->where('dailyworkmaster.Date >=',$from);
+			}
+			if($to!='')
+			{
+				$this->db->where('dailyworkmaster.Date <=',$to);
+			}
+			
 			$query=$this->db->get();
 			$result=$query->result();
 			if (count($result)>0)
