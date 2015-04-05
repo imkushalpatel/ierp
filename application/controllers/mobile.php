@@ -42,21 +42,23 @@
 		{
 			$this->load->model('listmodel');
 			$data=$this->listmodel->categorylist($projectid);
-			echo json_encode($data);
+			$data1['CategoryList']=$data;
+			echo json_encode($data1);
 		}
-		function getlocation($proj='')
+		function getLocationList($projectid='')
 		{
 			$this->load->model('listmodel');
-			$data=$this->listmodel->get_location($proj);
-			echo json_encode($data);
+			$data=$this->listmodel->locationlist($projectid);
+			$data1['LocationList']=$data;
+			echo json_encode($data1);
 		}
-		function insertdailywork($proj='',$user='',$cat='',$loc='',$date='',$work='',$com='')
+		function insertDailyWork($proj='',$user='',$cat='',$loc='',$date='',$work='',$com='')
 		{
 			$this->load->model('insertmodel');
-			$data=$this->insertmodel->insertdaily(urldecode($proj),urldecode($user),urldecode($cat),urldecode($loc),urldecode($date),urldecode($work),urldecode($com));
+			$data=$this->insertmodel->dailywork(urldecode($proj),urldecode($user),urldecode($cat),urldecode($loc),urldecode($date),urldecode($work),urldecode($com));
 			echo json_encode($data);
 		}
-		function getdate()
+		function getDate()
 		{
 			//$data['Date']=date("Y.m.d.h.i.s");
 			$data['Date']=date("Y-M-d");
@@ -64,20 +66,20 @@
 		}
 		function getdaylist($proj='')
 		{
-			$this->load->model('listmodel');
-			$data=$this->listmodel->get_daylist($proj);
+			$this->load->model('generatelistmodel');
+			$data=$this->generatelistmodel->get_daylist($proj);
 			echo json_encode($data);
 		}
 		function getdelaylistproj($proj='',$from='',$to='')
 		{
-			$this->load->model('listmodel');
-			$data=$this->listmodel->get_delayproj($proj,$from,$to);
+			$this->load->model('generatelistmodel');
+			$data=$this->generatelistmodel->get_delayproj($proj,$from,$to);
 			echo json_encode($data);
 		}
 		function getdelaylistcat($cat='',$from='',$to='')
 		{
-			$this->load->model('listmodel');
-			$data=$this->listmodel->get_delaycat($cat,$from,$to);
+			$this->load->model('generatelistmodel');
+			$data=$this->generatelistmodel->get_delaycat($cat,$from,$to);
 			echo json_encode($data);
 		}
 		function getissues()

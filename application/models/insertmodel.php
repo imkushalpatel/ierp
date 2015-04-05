@@ -7,7 +7,7 @@ class insertmodel extends CI_Model
 			
 			
 	}
-	function insertdaily($proj='',$user='',$cat='',$loc='',$date='',$work='',$com='')
+	function dailywork($proj='',$user='',$cat='',$loc='',$date='',$work='',$com='')
 	{
 		$this->load->database();
 		$this->db->distinct('UserId');
