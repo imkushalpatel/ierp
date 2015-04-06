@@ -14,7 +14,7 @@ function get_daylist($proj='')
 	$this->db->select('Date,WorkDone,ordermaster.TotalWork,ordermaster.ProjectDeadline');
 	$this->db->from('dailyworkmaster');
 	$this->db->join('ordermaster','ordermaster.OrderId=dailyworkmaster.OrderId');
-	$this->db->where('ordermaster.ProjectName',$proj);
+	$this->db->where('ordermaster.OrderId',$proj);
 	$query=$this->db->get();
 	$result=$query->result();
 	$j=0;
@@ -51,7 +51,7 @@ function get_daylist($proj='')
 		}
 		//$data['Date']=$result[0]->Date;
 		$data1['status']=true;
-		$data1[$proj]=$data;
+		$data1['DayWise']=$data;
 		$datediff1=new DateTime(date('d-M-Y'));
 		$datediff2=new DateTime($result[0]->ProjectDeadline);
 		$data1['deadline']=$datediff2->format('d-M-Y');
