@@ -13,21 +13,20 @@
 		function Login()
 		{
 			if(isset($_POST['user']) && isset($_POST['pass'])){
-			$user=$_POST['user'];
-			$pass=$_POST['pass'];
 			$company=1;
 			$this->load->model('loginmodel');
-			$data=$this->loginmodel->login_check($user,$pass,$company);
-			
+			$data=$this->loginmodel->login_check($_POST['user'],$_POST['pass'],$company);
 			echo json_encode($data);
 			}
 		}
 		
 		function getProjectsList()
-		{
+		{			
+			
 			$this->load->model('listmodel');
 			$data = $this->listmodel->projectslist();
 			$data1['ProjectList']=$data;
+			//$data1['temp']=$this->session->userdata('EntityId');
 			echo json_encode($data1);
 		}
 		function getProjectHeadsList($projectid)
@@ -52,10 +51,11 @@
 			$data1['LocationList']=$data;
 			echo json_encode($data1);
 		}
-		function insertDailyWork($proj='',$user='',$cat='',$loc='',$date='',$work='',$com='')
+		function insertDailyWork()
 		{
+			
 			$this->load->model('insertmodel');
-			$data=$this->insertmodel->dailywork(urldecode($proj),urldecode($user),urldecode($cat),urldecode($loc),urldecode($date),urldecode($work),urldecode($com));
+			$data=$this->insertmodel->dailywork($_POST['proj'],$_POST['user'],$_POST['cat'],$_POST['loc'],$_POST['date'],$_POST['work'],$_POST['comm']);
 			echo json_encode($data);
 		}
 		function getDate()

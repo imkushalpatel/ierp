@@ -27,10 +27,19 @@ class loginmodel extends CI_Model
 			
 			$data['EntityId'] = $result[0]->EntityId;
 			$data['Username'] = $result[0]->Username;
-			$data['UserType'] = $result[0]->UserType;
+			if($result[0]->UserType!='Normal')
+			{
+			$data['UserType'] = 1;
+			}
+			else 
+			{
+				$data['UserType'] = 0;
+			}
 			$data['DivisionId'] = $result[0]->DivisionId;
 			$data['Name']=$result[0]->Name;
 			$data['Login'] = true;
+			$this->session->set_userdata("UserId",$result[0]->UserId);
+			$this->session->set_userdata("EntityId",$result[0]->EntityId);
 		
 		}
 		else $data['Login']=false;

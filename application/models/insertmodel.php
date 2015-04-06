@@ -38,7 +38,7 @@ class insertmodel extends CI_Model
 		
 		
 		$this->db->insert('dailyworkmaster',$data);
-		$temp['status']='ok';
+		$temp['status']=true;
 		
 		return  $temp;
 	}
