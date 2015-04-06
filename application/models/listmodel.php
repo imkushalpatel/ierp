@@ -71,24 +71,14 @@ class listmodel extends CI_Model
 			
 		}
 		
-		function get_issues(){
+		function issueslist(){
 			$this->load->database();
 			$this->db->distinct('TypeOfIssue');
-			$this->db->select('TypeOfIssue');
+			$this->db->select('TypeOfIssue as Issue');
 			$this->db->from('dailyworkmaster');
 			$query = $this->db->get();
-			$result = $query->result();
-			$i=0;
-			while(count($result) > $i)
-			{
-				
-				$list[]=array($i+1=>$result[$i]->TypeOfIssue);
-				
-				$i++;
-			}
-			$data['issues']=$list;
+			return $query->result();
 			
-			return $data;
 			
 		}
 	}

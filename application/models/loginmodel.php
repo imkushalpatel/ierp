@@ -15,7 +15,7 @@ class loginmodel extends CI_Model
 		$this->db->from('usermaster');
 		$this->db->join('associatemaster','associatemaster.AssociateId=usermaster.UserId');
 		$this->db->where('usermaster.Username',$user);
-		$this->db->where('usermaster.Password',md5($pass));
+		$this->db->where('usermaster.Password',$pass);
 		$this->db->where('usermaster.IfDeactivated','1');
 		$this->db->where('usermaster.EntityId',$company);
 		$query = $this->db->get();

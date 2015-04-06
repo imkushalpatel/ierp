@@ -82,11 +82,12 @@
 			$data=$this->generatelistmodel->get_delaycat($cat,$from,$to);
 			echo json_encode($data);
 		}
-		function getissues()
+		function getIssueList()
 		{
 			$this->load->model('listmodel');
-			$data=$this->listmodel->get_Issues();
-			echo json_encode($data);
+			$data=$this->listmodel->issueslist();
+			$data1['IssuesList']=$data;
+			echo json_encode($data1);
 		}
 	}
 ?>
