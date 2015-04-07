@@ -53,10 +53,15 @@
 		}
 		function insertDailyWork()
 		{
-			
+			if(isset($_POST['proj'])&&isset($_POST['user'])&&isset($_POST['cat'])&&isset($_POST['loc'])&&isset($_POST['date'])&&isset($_POST['work'])&&isset($_POST['comm'])){
 			$this->load->model('insertmodel');
-			$data=$this->insertmodel->dailywork($_POST['proj'],$_POST['user'],$_POST['cat'],$_POST['loc'],$_POST['date'],$_POST['work'],$_POST['comm']);
+			if($this->insertmodel->dailywork($_POST['proj'],$_POST['user'],$_POST['cat'],$_POST['loc'],$_POST['date'],$_POST['work'],$_POST['comm'])){
+				
+				$data['status']=true;
+			}else 
+				$data['status']=false;
 			echo json_encode($data);
+			}
 		}
 		function getDate()
 		{
@@ -70,16 +75,17 @@
 			$data=$this->generatelistmodel->get_daylist($proj);
 			echo json_encode($data);
 		}
-		function getdelaylistproj($proj='',$from='',$to='')
+		function getdelaylistproj()
 		{
+			
 			$this->load->model('generatelistmodel');
-			$data=$this->generatelistmodel->get_delayproj($proj,$from,$to);
+			$data=$this->generatelistmodel->get_delayproj($_POST['main'],$_POST['from'],$_POST['to']);
 			echo json_encode($data);
 		}
-		function getdelaylistcat($cat='',$from='',$to='')
+		function getdelaylistcat()
 		{
 			$this->load->model('generatelistmodel');
-			$data=$this->generatelistmodel->get_delaycat($cat,$from,$to);
+			$data=$this->generatelistmodel->get_delaycat($_POST['main'],$_POST['from'],$_POST['to']);
 			echo json_encode($data);
 		}
 		function getIssueList()

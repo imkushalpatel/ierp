@@ -25,7 +25,7 @@ class insertmodel extends CI_Model
 		
 		$query = $this->db->get();
 		$result = $query->result();
-		
+		if(count($result)>0){
 		
 		
 		$data['OrderId']=$result[0]->OrderId;
@@ -40,7 +40,9 @@ class insertmodel extends CI_Model
 		$this->db->insert('dailyworkmaster',$data);
 		$temp['status']=true;
 		
-		return  $temp;
+		return  true;
+		}
+		else return false;
 	}
 }
 ?>

@@ -11,9 +11,9 @@ class loginmodel extends CI_Model
 	{
 		$this->load->database();
 		$this->db->select('usermaster.UserId,usermaster.EntityId,usermaster.Username,usermaster.UserType,usermaster.DivisionId');
-		$this->db->select('concat(associatemaster.FirstName," ",associatemaster.LastName) as Name',false);
+		//$this->db->select('concat(associatemaster.FirstName," ",associatemaster.LastName) as Name',false);
 		$this->db->from('usermaster');
-		$this->db->join('associatemaster','associatemaster.AssociateId=usermaster.UserId');
+		//$this->db->join('associatemaster','associatemaster.AssociateId=usermaster.UserId');
 		$this->db->where('usermaster.Username',$user);
 		$this->db->where('usermaster.Password',$pass);
 		$this->db->where('usermaster.IfDeactivated','1');
@@ -36,7 +36,7 @@ class loginmodel extends CI_Model
 				$data['UserType'] = 0;
 			}
 			$data['DivisionId'] = $result[0]->DivisionId;
-			$data['Name']=$result[0]->Name;
+			//$data['Name']=$result[0]->Name;
 			$data['Login'] = true;
 			$this->session->set_userdata("UserId",$result[0]->UserId);
 			$this->session->set_userdata("EntityId",$result[0]->EntityId);
