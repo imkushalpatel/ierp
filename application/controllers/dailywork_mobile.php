@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-	class mobile extends CI_Controller
+	class dailywork_mobile extends CI_Controller
 	{
-		function mobile()
+		function dailywork_mobile()
 		{
 			parent::__construct();
 			$this->load->library('table');
@@ -90,10 +90,24 @@
 		}
 		function getIssueList()
 		{
+			
 			$this->load->model('listmodel');
 			$data=$this->listmodel->issueslist();
 			$data1['IssuesList']=$data;
 			echo json_encode($data1);
+		}
+		function getHead()
+		{
+			$this->load->model('listmodel');
+			$data=$this->listmodel->listhead();
+			$data1['HeadList']=$data;
+			echo json_encode($data1);
+		}
+		function getHeadwiselist(){
+			$this->load->model('generatelistmodel');
+			$data=$this->generatelistmodel->get_headwise($_POST['id'],$_POST['from'],$_POST['to']);
+			//$data=$this->generatelistmodel->get_headwise(22,'','');
+			echo json_encode($data);
 		}
 	}
 ?>

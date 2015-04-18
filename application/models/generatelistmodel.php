@@ -185,5 +185,72 @@ function get_delaycat($cat='',$from='',$to='')
 		$data['status']=false;
 	return $data;
 }
+function get_headwise($headid='',$from='',$to=''){
+	$this->load->database();
+	$this->db->order_by('dailyworkmaster.OrderId','asc');
+	//$this->db->select('Date,WorkDone,ordermaster.TotalWork,ordermaster.ProjectDeadline');
+	$this->db->select('dailyworkmaster.WorkDone');
+	$this->db->select('ordermaster.ProjectName,ordermaster.CostPerUnit');
+	$this->db->from('dailyworkmaster');
+	$this->db->join('ordermaster','ordermaster.OrderId=dailyworkmaster.OrderId');
+	$this->db->where('dailyworkmaster.HeadId',$headid);
+	
+	/* if ($cat!='ALL') {
+		if ($cat=='null')
+			$this->db->where('dailyworkmaster.TypeOfIssue',NULL);
+		else
+			$this->db->where('dailyworkmaster.TypeOfIssue',$cat);
+	} */
+	if($from!='')
+	{
+		$this->db->where('dailyworkmaster.Date >=',$from);
+	}
+	if($to!='')
+	{
+		$this->db->where('dailyworkmaster.Date <=',$to);
+	}
+	
+	$query=$this->db->get();
+	$result=$query->result();
+	if (count($result)>0)
+	{
+		$j=0;
+		$temp=null;
+		$sumwork=0;
+		$sumvalue=0;
+		$list=array();
+		while(count($result)>$j){
+			$proj=$result[$j]->ProjectName;
+			if($proj!=$temp){
+				$i=0;
+				$work=0;
+				while(count($result)>$i){
+					$proj1=$result[$i]->ProjectName;
+					if ($proj==$proj1){
+						$work+=$result[$i]->WorkDone;
+							
+					}
+					$i++;
+				}
+				$list[]=array('proj'=>$proj,'workdone'=>number_format($work,2),'value'=>round($work*$result[$j]->CostPerUnit));
+				$sumwork+=$work;
+				$sumvalue+=round($work*$result[$j]->CostPerUnit);
+			}
+			$temp=$proj;
+			$j++;
+		}
+		$data['status']=true;
+		$data['headwise']=$list;
+		$data['totalwork']=number_format($sumwork,2);
+		$data['totalvalue']=$sumvalue;
+		
+		return $data;
+	}
+	else
+		$data['status']=false;
+	return $data;
+	
+}
+
 }
 ?>

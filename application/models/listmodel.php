@@ -40,6 +40,8 @@ class listmodel extends CI_Model
 			$this->db->where('ordermaster.OrderId',$projectid);
 			$this->db->join('ordermaster','ordermaster.OrderId=profileprojectmapping.ProjectId');
 			$this->db->join('associatemaster','associatemaster.AssociateId=profileprojectmapping.UserId');
+			$this->db->join('profilemaster','profilemaster.ProfileId=profileprojectmapping.ProfileId');
+			$this->db->where('profilemaster.ProfileName','Client Servicing/ Project Head');
 			$query = $this->db->get();
 			return  $query->result();
 			//var_dump($result);
@@ -81,5 +83,22 @@ class listmodel extends CI_Model
 			
 			
 		}
+		function listhead()
+		{
+			$this->load->database();
+			$this->db->distinct('UserId');
+			$this->db->order_by('associatemaster.FirstName','ASC');
+			$this->db->select('associatemaster.AssociateId');
+			$this->db->select('concat(associatemaster.FirstName," ",associatemaster.LastName) as Name',false);
+			
+			$this->db->from('profileprojectmapping');
+			$this->db->join('profilemaster','profilemaster.ProfileId=profileprojectmapping.ProfileId');
+			$this->db->where('profilemaster.ProfileName','Client Servicing/ Project Head');
+			//$this->db->where_in('profileprojectmapping.ProfileId',array(8,13,22));
+			$this->db->join('associatemaster','associatemaster.AssociateId=profileprojectmapping.UserId');
+			$query = $this->db->get();
+			return  $query->result();
+		}
+		
 	}
 ?>
