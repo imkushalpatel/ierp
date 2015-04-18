@@ -3,10 +3,20 @@
 <head>
 <title>Error</title>
 <style type="text/css">
+::selection {
+	background-color: #E13300;
+	color: white;
+}
 
-::selection{ background-color: #E13300; color: white; }
-::moz-selection{ background-color: #E13300; color: white; }
-::webkit-selection{ background-color: #E13300; color: white; }
+::moz-selection {
+	background-color: #E13300;
+	color: white;
+}
+
+::webkit-selection {
+	background-color: #E13300;
+	color: white;
+}
 
 body {
 	background-color: #fff;
