@@ -187,9 +187,8 @@
 
 		<code>
 			<kbd>$this->db->trans_off()</kbd>
-			<br />
-			<br /> $this->db->trans_start();<br /> $this->db->query('AN SQL
-			QUERY...');<br /> $this->db->trans_complete();
+			<br /> <br /> $this->db->trans_start();<br /> $this->db->query('AN
+			SQL QUERY...');<br /> $this->db->trans_complete();
 		</code>
 
 		<p class="important">When transactions are disabled, your queries
@@ -224,11 +223,10 @@
 			follows:</p>
 
 		<code>
-			$this->db->trans_begin();<br />
-			<br /> $this->db->query('AN SQL QUERY...');<br />
-			$this->db->query('ANOTHER QUERY...');<br /> $this->db->query('AND
-			YET ANOTHER QUERY...');<br /> <br /> if ($this->db->trans_status()
-			=== FALSE)<br /> {<br />
+			$this->db->trans_begin();<br /> <br /> $this->db->query('AN SQL
+			QUERY...');<br /> $this->db->query('ANOTHER QUERY...');<br />
+			$this->db->query('AND YET ANOTHER QUERY...');<br /> <br /> if
+			($this->db->trans_status() === FALSE)<br /> {<br />
 			&nbsp;&nbsp;&nbsp;&nbsp;$this->db->trans_rollback();<br /> }<br />
 			else<br /> {<br />
 			&nbsp;&nbsp;&nbsp;&nbsp;$this->db->trans_commit();<br /> }<br />

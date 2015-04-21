@@ -130,8 +130,8 @@
 			use this method:</p>
 		<p>
 			<code>
-				$this-&gt;db-&gt;set_dbprefix('newprefix');<br />
-				<br /> $this-&gt;db-&gt;dbprefix('tablename');<br /> // outputs
+				$this-&gt;db-&gt;set_dbprefix('newprefix');<br /> <br />
+				$this-&gt;db-&gt;dbprefix('tablename');<br /> // outputs
 				newprefix_tablename
 			</code>
 		</p>
@@ -212,8 +212,7 @@
 			<var>?</var>
 			AND author =
 			<var>?</var>
-			"; <br />
-			<br /> $this->db->query($sql, array(3, 'live', 'Rick'));
+			"; <br /> <br /> $this->db->query($sql, array(3, 'live', 'Rick'));
 		</code>
 
 		<p>The question marks in the query are automatically replaced with

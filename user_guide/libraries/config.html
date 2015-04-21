@@ -236,14 +236,13 @@
 			<var>blog_settings</var>
 			',
 			<kbd>TRUE</kbd>
-			);<br />
-			<br /> // Retrieve a config item named site_name contained within
-			the blog_settings array<br /> $site_name = $this->config->item('
+			);<br /> <br /> // Retrieve a config item named site_name contained
+			within the blog_settings array<br /> $site_name =
+			$this->config->item('
 			<dfn>site_name</dfn>
 			', '
 			<var>blog_settings</var>
-			');<br />
-			<br /> // An alternate way to specify the same item:<br />
+			');<br /> <br /> // An alternate way to specify the same item:<br />
 			$blog_config = $this->config->item('
 			<var>blog_settings</var>
 			');<br /> $site_name = $blog_config['site_name'];

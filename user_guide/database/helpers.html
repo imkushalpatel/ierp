@@ -154,8 +154,8 @@
 
 		<code>
 			$data = array('name' => $name, 'email' => $email, 'url' => $url);<br />
-			<br /> $where = "author_id = 1 AND status = 'active'"; <br />
-			<br /> $str = $this->db->update_string('table_name', $data, $where);
+			<br /> $where = "author_id = 1 AND status = 'active'"; <br /> <br />
+			$str = $this->db->update_string('table_name', $data, $where);
 		</code>
 
 		<p>The first parameter is the table name, the second is an

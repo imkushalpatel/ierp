@@ -105,8 +105,8 @@
 			$name = 'mydata1.txt';<br /> $data = 'A Data String!';<br /> <br />
 			$this->zip->add_data($name, $data);<br /> <br /> // Write the zip
 			file to a folder on your server. Name it "my_backup.zip"<br />
-			$this->zip->archive('/path/to/directory/my_backup.zip'); <br />
-			<br /> // Download the file to your desktop. Name it "my_backup.zip"<br />
+			$this->zip->archive('/path/to/directory/my_backup.zip'); <br /> <br />
+			// Download the file to your desktop. Name it "my_backup.zip"<br />
 			$this->zip->download('my_backup.zip');
 		</code>
 
@@ -187,9 +187,9 @@
 			add it to the archive:</p>
 
 		<code>
-			$path = '/path/to/photo.jpg';<br />
-			<br /> $this->zip->read_file($path); <br />
-			<br /> // Download the file to your desktop. Name it "my_backup.zip"<br />
+			$path = '/path/to/photo.jpg';<br /> <br />
+			$this->zip->read_file($path); <br /> <br /> // Download the file to
+			your desktop. Name it "my_backup.zip"<br />
 			$this->zip->download('my_backup.zip');
 		</code>
 
@@ -202,12 +202,11 @@
 
 
 		<code>
-			$path = '/path/to/photo.jpg';<br />
-			<br /> $this->zip->read_file($path,
+			$path = '/path/to/photo.jpg';<br /> <br />
+			$this->zip->read_file($path,
 			<kbd>TRUE</kbd>
-			); <br />
-			<br /> // Download the file to your desktop. Name it "my_backup.zip"<br />
-			$this->zip->download('my_backup.zip');
+			); <br /> <br /> // Download the file to your desktop. Name it
+			"my_backup.zip"<br /> $this->zip->download('my_backup.zip');
 		</code>
 
 		<p>
@@ -228,9 +227,9 @@
 			be encoded, as will any sub-folders contained within it. Example:</p>
 
 		<code>
-			$path = '/path/to/your/directory/';<br />
-			<br /> $this->zip->read_dir($path); <br />
-			<br /> // Download the file to your desktop. Name it "my_backup.zip"<br />
+			$path = '/path/to/your/directory/';<br /> <br />
+			$this->zip->read_dir($path); <br /> <br /> // Download the file to
+			your desktop. Name it "my_backup.zip"<br />
 			$this->zip->download('my_backup.zip');
 		</code>
 
@@ -243,8 +242,8 @@
 		</p>
 
 		<code>
-			$path = '/path/to/your/directory/';<br />
-			<br /> $this->zip->read_dir($path, FALSE);
+			$path = '/path/to/your/directory/';<br /> <br />
+			$this->zip->read_dir($path, FALSE);
 		</code>
 
 		<p>
@@ -293,8 +292,8 @@
 
 		<code>
 			$name = 'my_bio.txt';<br /> $data = 'I was born in an elevator...';<br />
-			<br /> $this->zip->add_data($name, $data);<br />
-			<br /> $zip_file = $this->zip->get_zip();
+			<br /> $this->zip->add_data($name, $data);<br /> <br /> $zip_file
+			= $this->zip->get_zip();
 		</code>
 
 
@@ -310,11 +309,9 @@
 			<br /> $this->zip->add_data($name, $data);<br /> $zip_file =
 			$this->zip->get_zip();<br /> <br />
 			<kbd>$this->zip->clear_data();</kbd>
-			<br />
-			<br /> $name = 'photo.jpg';<br />
+			<br /> <br /> $name = 'photo.jpg';<br />
 			$this->zip->read_file("/path/to/photo.jpg"); // Read the file's
-			contents<br /> <br />
-			<br /> $this->zip->download('myphotos.zip');
+			contents<br /> <br /> <br /> $this->zip->download('myphotos.zip');
 		</code>
 
 

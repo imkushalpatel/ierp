@@ -1,5 +1,4 @@
 <?php
-
 if (! defined ( 'BASEPATH' ))
 	exit ( 'No direct script access allowed' );
 /**
@@ -235,6 +234,7 @@ class CI_Config {
 	/**
 	 * Site URL
 	 * Returns base_url .
+	 *
 	 * index_page [. uri_string]
 	 *
 	 * @access public

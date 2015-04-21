@@ -1,5 +1,4 @@
 <?php
-
 if (! defined ( 'BASEPATH' ))
 	exit ( 'No direct script access allowed' );
 /**
@@ -598,8 +597,8 @@ class CI_Security {
 				'%3f', // ?
 				'%3b', // ;
 				'%3d' 
-		) // =
-;
+		); // =
+
 		
 		if (! $relative_path) {
 			$bad [] = './';
@@ -708,7 +707,7 @@ class CI_Security {
 	 */
 	protected function _sanitize_naughty_html($matches) {
 		return '&lt;' . $matches [1] . $matches [2] . $matches [3] . // encode opening brace
-		                                                  // encode captured opening or closing brace to prevent recursive vectors:
+		                                                             // encode captured opening or closing brace to prevent recursive vectors:
 		str_replace ( array (
 				'>',
 				'<' 

@@ -306,8 +306,8 @@
 
 		<ol>
 			<li><strong>Simple key/value method:</strong> <code>
-					$this->db->where('name', $name); <br />
-					<br />// Produces: WHERE name = 'Joe'
+					$this->db->where('name', $name); <br /> <br />// Produces: WHERE
+					name = 'Joe'
 				</code>
 
 				<p>Notice that the equal sign is added for you.</p>
@@ -319,9 +319,8 @@
 					between them:
 				</p> <code>
 					$this->db->where('name', $name);<br /> $this->db->where('title',
-					$title);<br /> $this->db->where('status', $status); <br />
-					<br />// WHERE name = 'Joe' AND title = 'boss' AND status =
-					'active'
+					$title);<br /> $this->db->where('status', $status); <br /> <br />//
+					WHERE name = 'Joe' AND title = 'boss' AND status = 'active'
 				</code></li>
 
 			<li><strong>Custom key/value method:</strong>
@@ -329,23 +328,20 @@
 				<p>You can include an operator in the first parameter in order
 					to control the comparison:</p> <code>
 					$this->db->where('name !=', $name);<br /> $this->db->where('id <',
-					$id); <br />
-					<br />// Produces: WHERE name != 'Joe' AND id < 45
+					$id); <br /> <br />// Produces: WHERE name != 'Joe' AND id < 45
 				</code></li>
 			<li><strong>Associative array method:</strong> <code>
 					$array = array('name' => $name, 'title' => $title, 'status' =>
-					$status);<br />
-					<br /> $this->db->where($array); <br />
-					<br />// Produces: WHERE name = 'Joe' AND title = 'boss' AND
-					status = 'active'
+					$status);<br /> <br /> $this->db->where($array); <br /> <br />//
+					Produces: WHERE name = 'Joe' AND title = 'boss' AND status =
+					'active'
 				</code>
 
 				<p>You can include your own operators using this method as well:</p>
 
 				<code>
 					$array = array('name !=' => $name, 'id <' => $id, 'date >' =>
-					$date);<br />
-					<br /> $this->db->where($array);
+					$date);<br /> <br /> $this->db->where($array);
 				</code></li>
 			<li><strong>Custom string:</strong>
 
@@ -436,8 +432,8 @@
 
 		<ol>
 			<li><strong>Simple key/value method:</strong> <code>
-					$this->db->like('title', 'match'); <br />
-					<br />// Produces: WHERE title LIKE '%match%'
+					$this->db->like('title', 'match'); <br /> <br />// Produces:
+					WHERE title LIKE '%match%'
 				</code>
 
 				<p>
@@ -447,8 +443,8 @@
 					between them:
 				</p> <code>
 					$this->db->like('title', 'match');<br /> $this->db->like('body',
-					'match'); <br />
-					<br /> // WHERE title LIKE '%match%' AND body LIKE '%match%
+					'match'); <br /> <br /> // WHERE title LIKE '%match%' AND body
+					LIKE '%match%
 				</code> If you want to control where the wildcard (%) is placed, you can
 				use an optional third argument. Your options are 'before', 'after'
 				and 'both' (which is the default). <code>
@@ -468,10 +464,9 @@
 
 			<li><strong>Associative array method:</strong> <code>
 					$array = array('title' => $match, 'page1' => $match, 'page2' =>
-					$match);<br />
-					<br /> $this->db->like($array); <br />
-					<br />// WHERE title LIKE '%match%' AND page1 LIKE '%match%' AND
-					page2 LIKE '%match%'
+					$match);<br /> <br /> $this->db->like($array); <br /> <br />//
+					WHERE title LIKE '%match%' AND page1 LIKE '%match%' AND page2 LIKE
+					'%match%'
 				</code></li>
 		</ol>
 
@@ -514,8 +509,8 @@
 		<p>Permits you to write the GROUP BY portion of your query:</p>
 
 		<code>
-			$this->db->group_by("title"); <br />
-			<br />// Produces: GROUP BY title
+			$this->db->group_by("title"); <br /> <br />// Produces: GROUP BY
+			title
 		</code>
 
 		<p>You can also pass an array of multiple values as well:</p>
@@ -670,9 +665,9 @@
 			$data = array(<br /> &nbsp;&nbsp;&nbsp;'title' => 'My title' ,<br />
 			&nbsp;&nbsp;&nbsp;'name' => 'My Name' ,<br />
 			&nbsp;&nbsp;&nbsp;'date' => 'My date'<br /> );<br /> <br />
-			$this->db->insert('mytable', $data); <br />
-			<br /> // Produces: INSERT INTO mytable (title, name, date) VALUES
-			('My title', 'My name', 'My date')
+			$this->db->insert('mytable', $data); <br /> <br /> // Produces:
+			INSERT INTO mytable (title, name, date) VALUES ('My title', 'My
+			name', 'My date')
 		</code>
 
 		<p>The first parameter will contain the table name, the second is
@@ -688,9 +683,8 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var $date = 'My
 			Date';<br /> &nbsp;&nbsp;&nbsp;&nbsp;}<br /> */<br /> <br />
 			$object = new Myclass;<br /> <br /> $this->db->insert('mytable',
-			$object); <br />
-			<br /> // Produces: INSERT INTO mytable (title, content, date)
-			VALUES ('My Title', 'My Content', 'My Date')
+			$object); <br /> <br /> // Produces: INSERT INTO mytable (title,
+			content, date) VALUES ('My Title', 'My Content', 'My Date')
 		</code>
 
 		<p>The first parameter will contain the table name, the second is
@@ -718,10 +712,10 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name' => 'Another Name' ,<br />
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'date' => 'Another date'<br />
 			&nbsp;&nbsp;&nbsp;)<br /> );<br /> <br />
-			$this->db->insert_batch('mytable', $data); <br />
-			<br /> // Produces: INSERT INTO mytable (title, name, date) VALUES
-			('My title', 'My name', 'My date'), ('Another title', 'Another name',
-			'Another date')
+			$this->db->insert_batch('mytable', $data); <br /> <br /> //
+			Produces: INSERT INTO mytable (title, name, date) VALUES ('My title',
+			'My name', 'My date'), ('Another title', 'Another name', 'Another
+			date')
 		</code>
 
 		<p>The first parameter will contain the table name, the second is
@@ -750,8 +744,8 @@
 
 		<code>
 			$this->db->set('name', $name); <br /> $this->db->insert('mytable');
-			<br />
-			<br /> // Produces: INSERT INTO mytable (name) VALUES ('{$name}')
+			<br /> <br /> // Produces: INSERT INTO mytable (name) VALUES
+			('{$name}')
 		</code>
 
 		<p>If you use multiple function called they will be assembled
@@ -782,8 +776,8 @@
 		<p>You can also pass an associative array to this function:</p>
 		<code>
 			$array = array('name' => $name, 'title' => $title, 'status' =>
-			$status);<br />
-			<br /> $this->db->set($array);<br /> $this->db->insert('mytable');
+			$status);<br /> <br /> $this->db->set($array);<br />
+			$this->db->insert('mytable');
 		</code>
 
 		<p>Or an object:</p>
@@ -822,10 +816,9 @@
 			=> $date<br />
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />
 			<br /> $this->db->where('id', $id);<br />
-			$this->db->update('mytable', $data); <br />
-			<br /> // Produces:<br /> // UPDATE mytable <br /> // SET title =
-			'{$title}', name = '{$name}', date = '{$date}'<br /> // WHERE id =
-			$id
+			$this->db->update('mytable', $data); <br /> <br /> // Produces:<br />
+			// UPDATE mytable <br /> // SET title = '{$title}', name =
+			'{$name}', date = '{$date}'<br /> // WHERE id = $id
 		</code>
 
 		<p>Or you can supply an object:</p>
@@ -886,10 +879,10 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name' => 'Another Name 2' ,<br />
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'date' => 'Another date 2'<br />
 			&nbsp;&nbsp;&nbsp;)<br /> );<br /> <br />
-			$this->db->update_batch('mytable', $data, 'title'); <br />
-			<br /> // Produces: <br /> // UPDATE `mytable` SET `name` = CASE<br />
-			// WHEN `title` = 'My title' THEN 'My Name 2'<br /> // WHEN `title`
-			= 'Another title' THEN 'Another Name 2'<br /> // ELSE `name` END,<br />
+			$this->db->update_batch('mytable', $data, 'title'); <br /> <br />
+			// Produces: <br /> // UPDATE `mytable` SET `name` = CASE<br /> //
+			WHEN `title` = 'My title' THEN 'My Name 2'<br /> // WHEN `title` =
+			'Another title' THEN 'Another Name 2'<br /> // ELSE `name` END,<br />
 			// `date` = CASE <br /> // WHEN `title` = 'My title' THEN 'My date
 			2'<br /> // WHEN `title` = 'Another title' THEN 'Another date 2'<br />
 			// ELSE `date` END<br /> // WHERE `title` IN ('My title','Another
@@ -914,9 +907,8 @@
 		<p>Generates a delete SQL string and runs the query.</p>
 
 		<code>
-			$this->db->delete('mytable', array('id' => $id)); <br />
-			<br /> // Produces:<br /> // DELETE FROM mytable <br /> // WHERE
-			id = $id
+			$this->db->delete('mytable', array('id' => $id)); <br /> <br /> //
+			Produces:<br /> // DELETE FROM mytable <br /> // WHERE id = $id
 		</code>
 
 		<p>
@@ -1033,9 +1025,9 @@
 			<code>
 				$this-&gt;db-&gt;start_cache();<br />
 				$this-&gt;db-&gt;select('field1');<br />
-				$this-&gt;db-&gt;stop_cache();<br />
-				<br /> $this-&gt;db-&gt;get('tablename');<br /> <br />
-				//Generates: SELECT `field1` FROM (`tablename`)<br /> <br />
+				$this-&gt;db-&gt;stop_cache();<br /> <br />
+				$this-&gt;db-&gt;get('tablename');<br /> <br /> //Generates:
+				SELECT `field1` FROM (`tablename`)<br /> <br />
 				$this-&gt;db-&gt;select('field2');<br />
 				$this-&gt;db-&gt;get('tablename');<br /> <br /> //Generates:
 				SELECT `field1`, `field2` FROM (`tablename`)<br /> <br />

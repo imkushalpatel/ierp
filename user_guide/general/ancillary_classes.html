@@ -123,21 +123,18 @@
 		</p>
 
 		<code>
-			$CI =& get_instance();<br />
-			<br /> $CI->load->helper('url');<br />
+			$CI =& get_instance();<br /> <br /> $CI->load->helper('url');<br />
 			$CI->load->library('session');<br /> $CI->config->item('base_url');<br />
 			etc.
 		</code>
 
 		<p class="important">
 			<strong>Note:</strong> You'll notice that the above get_instance()
-			function is being passed by reference: <br />
-			<br />
+			function is being passed by reference: <br /> <br />
 			<var>$CI =& get_instance();</var>
-			<br />
-			<br /> This is very important. Assigning by reference allows you to
-			use the original CodeIgniter object rather than creating a copy of
-			it.
+			<br /> <br /> This is very important. Assigning by reference allows
+			you to use the original CodeIgniter object rather than creating a
+			copy of it.
 		</p>
 	</div>
 	<!-- END CONTENT -->

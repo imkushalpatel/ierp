@@ -1,5 +1,4 @@
 <?php
-
 if (! defined ( 'BASEPATH' ))
 	exit ( 'No direct script access allowed' );
 /**
@@ -70,7 +69,7 @@ class CI_DB_driver {
 	var $_reserved_identifiers = array (
 			'*' 
 	); // Identifiers that should NOT be escaped
-	                                         
+	   
 	// These are use with Oracle
 	var $stmt_id;
 	var $curs_id;
@@ -730,7 +729,7 @@ class CI_DB_driver {
 	
 	/**
 	 * Determine if a particular table exists
-	 * 
+	 *
 	 * @access public
 	 * @return boolean
 	 */
@@ -787,7 +786,7 @@ class CI_DB_driver {
 	
 	/**
 	 * Determine if a particular field exists
-	 * 
+	 *
 	 * @access public
 	 * @param
 	 *        	string
@@ -1221,12 +1220,12 @@ class CI_DB_driver {
 				// If so, we add the table prefix to the column name in the 3rd segment.
 				if (isset ( $parts [3] )) {
 					$i = 2;
-				}				// Do we have 3 segments (database.table.column)?
-				// If so, we add the table prefix to the column name in 2nd position
+				} // Do we have 3 segments (database.table.column)?
+				  // If so, we add the table prefix to the column name in 2nd position
 				elseif (isset ( $parts [2] )) {
 					$i = 1;
-				} 				// Do we have 2 segments (table.column)?
-				// If so, we add the table prefix to the column name in 1st segment
+				}  // Do we have 2 segments (table.column)?
+				  // If so, we add the table prefix to the column name in 1st segment
 				else {
 					$i = 0;
 				}

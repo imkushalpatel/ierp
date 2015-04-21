@@ -1,5 +1,4 @@
 <?php
-
 if (! defined ( 'BASEPATH' ))
 	exit ( 'No direct script access allowed' );
 /**
@@ -99,7 +98,7 @@ class CI_DB_cubrid_forge extends CI_DB_forge {
 								$sql .= '(' . implode ( ',', $attributes ['CONSTRAINT'] ) . ')';
 								break;
 							case 'enum' : // As of version 8.4.0 CUBRID does not support
-							             // enum data type.
+							              // enum data type.
 								break;
 							case 'set' :
 								$sql .= '("' . implode ( '","', $attributes ['CONSTRAINT'] ) . '")';

@@ -1,5 +1,4 @@
 <?php
-
 if (! defined ( 'BASEPATH' ))
 	exit ( 'No direct script access allowed' );
 /**
@@ -63,7 +62,7 @@ class CI_Image_lib {
 	var $wm_shadow_color = ''; // Dropshadow color
 	var $wm_shadow_distance = 2; // Dropshadow distance
 	var $wm_opacity = 50; // Image opacity: 1 - 100 Only works with image
-	                        
+	                      
 	// Private Vars
 	var $source_folder = '';
 	var $dest_folder = '';

@@ -91,17 +91,17 @@
 		</p>
 
 		<code>
-			$fields = $this->db->list_fields('table_name');<br />
-			<br /> foreach ($fields as $field)<br /> {<br />
-			&nbsp;&nbsp;&nbsp;echo $field;<br /> }
+			$fields = $this->db->list_fields('table_name');<br /> <br />
+			foreach ($fields as $field)<br /> {<br /> &nbsp;&nbsp;&nbsp;echo
+			$field;<br /> }
 		</code>
 
 		<p>2. You can gather the field names associated with any query you
 			run by calling the function from your query result object:</p>
 
 		<code>
-			$query = $this->db->query('SELECT * FROM some_table'); <br />
-			<br /> foreach ($query->list_fields() as $field)<br /> {<br />
+			$query = $this->db->query('SELECT * FROM some_table'); <br /> <br />
+			foreach ($query->list_fields() as $field)<br /> {<br />
 			&nbsp;&nbsp;&nbsp;echo $field;<br /> }
 		</code>
 
@@ -135,10 +135,10 @@
 		<p>Usage example:</p>
 
 		<code>
-			$fields = $this->db->field_data('table_name');<br />
-			<br /> foreach ($fields as $field)<br /> {<br />
-			&nbsp;&nbsp;&nbsp;echo $field->name;<br /> &nbsp;&nbsp;&nbsp;echo
-			$field->type;<br /> &nbsp;&nbsp;&nbsp;echo $field->max_length;<br />
+			$fields = $this->db->field_data('table_name');<br /> <br /> foreach
+			($fields as $field)<br /> {<br /> &nbsp;&nbsp;&nbsp;echo
+			$field->name;<br /> &nbsp;&nbsp;&nbsp;echo $field->type;<br />
+			&nbsp;&nbsp;&nbsp;echo $field->max_length;<br />
 			&nbsp;&nbsp;&nbsp;echo $field->primary_key;<br /> }
 		</code>
 

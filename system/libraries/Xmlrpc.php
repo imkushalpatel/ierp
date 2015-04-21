@@ -1,5 +1,4 @@
 <?php
-
 if (! defined ( 'BASEPATH' ))
 	exit ( 'No direct script access allowed' );
 /**
@@ -938,7 +937,7 @@ class XML_RPC_Message extends CI_Xmlrpc {
 	function character_data($the_parser, $data) {
 		if ($this->xh [$the_parser] ['isf'] > 1)
 			return; // XML Fault found already
-				                                               
+				        
 		// If a value has not been found
 		if ($this->xh [$the_parser] ['lv'] != 3) {
 			if ($this->xh [$the_parser] ['lv'] == 1) {

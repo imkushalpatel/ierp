@@ -308,16 +308,13 @@
 
 		<code>
 			<dfn>// Load the DB utility class</dfn>
-			<br /> $this->load->dbutil();<br />
-			<br />
+			<br /> $this->load->dbutil();<br /> <br />
 
 			<dfn>// Backup your entire database and assign it to a variable</dfn>
-			<br /> $backup =& $this->dbutil->backup(); <br />
-			<br />
+			<br /> $backup =& $this->dbutil->backup(); <br /> <br />
 			<dfn>// Load the file helper and write the file to your server</dfn>
 			<br /> $this->load->helper('file');<br />
-			write_file('/path/to/mybackup.gz', $backup); <br />
-			<br />
+			write_file('/path/to/mybackup.gz', $backup); <br /> <br />
 			<dfn>// Load the download helper and send the file to your
 				desktop</dfn>
 			<br /> $this->load->helper('download');<br />
