@@ -30,8 +30,7 @@ class Timesheet_model extends CI_Model {
 				'7' => 'Jul',
 				'8' => 'Aug',
 				'9' => 'Sep' 
-		)
-		;
+		);
 		
 		if ($WeekNo != '' && $Month != '' && $Year != '') {
 			if ($this->input->post ( 'TimeSheetsId' ) != '') {
@@ -54,8 +53,7 @@ class Timesheet_model extends CI_Model {
 								'EntityId' => $this->session->userdata ( 'EntityId' ),
 								'InsertedDate' => date ( "Y-m-d" ),
 								'InsertedBy' => $this->session->userdata ( 'UserId' ) 
-						)
-						;
+						);
 						
 						$this->db->insert ( 'timesheetsmaster', $data );
 					}
@@ -74,8 +72,7 @@ class Timesheet_model extends CI_Model {
 								'Comments' => $this->input->post ( 'Comments' ),
 								'NoofHours' => $this->input->post ( 'NoofHours' ),
 								'ModifiedOn' => date ( "Y-m-d" ) 
-						)
-						;
+						);
 						
 						$this->db->where ( 'TimeSheetsId', $this->input->post ( 'TimeSheetsId' ) );
 						$this->db->update ( 'timesheetsmaster', $data );
@@ -113,8 +110,7 @@ class Timesheet_model extends CI_Model {
 				'7' => 'Jul',
 				'8' => 'Aug',
 				'9' => 'Sep' 
-		)
-		;
+		);
 		$this->load->database ();
 		$this->db->select ( 'sum(NoofHours) as NoofHours, TimesheetWeek, TimesheetMonth' );
 		$this->db->from ( 'timesheetsmaster' );
@@ -152,8 +148,7 @@ class Timesheet_model extends CI_Model {
 				'7' => 'Jul',
 				'8' => 'Aug',
 				'9' => 'Sep' 
-		)
-		;
+		);
 		$this->load->database ();
 		
 		$this->db->select ( 'timesheetsmaster.*, ProjectId, ProjectName, TaskName, SubTaskName' );
@@ -197,8 +192,7 @@ class Timesheet_model extends CI_Model {
 				'7' => 'Jul',
 				'8' => 'Aug',
 				'9' => 'Sep' 
-		)
-		;
+		);
 		$this->load->database ();
 		$this->db->select ( 'timesheetsmaster.*, ProjectId, ProjectName,TaskName,SubTaskName' );
 		$this->db->from ( 'timesheetsmaster' );

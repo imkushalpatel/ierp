@@ -235,6 +235,11 @@ class CI_Config {
 	 * Site URL
 	 * Returns base_url .
 	 *
+	 *
+	 *
+	 *
+	 *
+	 *
 	 * index_page [. uri_string]
 	 *
 	 * @access public

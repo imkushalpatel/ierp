@@ -53,14 +53,23 @@ class generatelistmodel extends CI_Model {
 			// $data['Date']=$result[0]->Date;
 			$data1 ['status'] = true;
 			$data1 ['DayWise'] = $data;
-			$datediff1 = new DateTime ( date ( 'd-M-Y' ) );
+			$from = date ( 'Y-m-d' );
+			$till = $result [0]->ProjectDeadline;
+			// if ($till < $from) {
+			// trigger_error ( "The date till is before the date from", E_USER_NOTICE );
+			// }
+			$from = explode ( '-', $from );
+			$till = explode ( '-', $till );
+			$from = gregoriantojd ( $from [1], $from [2], $from [0] );
+			$till = gregoriantojd ( $till [1], $till [2], $till [0] );
+			$days = ($till - $from);
+			// $datediff1 = new DateTime ( date ( 'd-M-Y' ) );
 			$datediff2 = new DateTime ( $result [0]->ProjectDeadline );
 			$data1 ['deadline'] = $datediff2->format ( 'd-M-Y' );
-			
-			$datediff1 = new DateTime ( date ( 'd-M-Y' ) );
-			
-			$interval = date_diff ( $datediff1, $datediff2 );
-			$rrr = ($result [0]->TotalWork - $total) / $interval->format ( '%R%a' );
+			// $datediff1 = new DateTime ( date ( 'd-M-Y' ) );
+			// $interval = date_diff ( $datediff1, $datediff2 );
+			// $rrr = ($result [0]->TotalWork - $total) / $interval->format ( '%R%a' );
+			$rrr = ($result [0]->TotalWork - $total) / $days;
 			$data1 ['rrr'] = number_format ( $rrr, 2 );
 			$data1 ['totalreq'] = $result [0]->TotalWork;
 			$data1 ['totaldone'] = number_format ( $total, 1 );
@@ -72,9 +81,9 @@ class generatelistmodel extends CI_Model {
 	function get_delayproj($proj = '', $from = '', $to = '') {
 		$this->load->database ();
 		$this->db->order_by ( 'TypeOfIssue', 'asc' );
-		// $this->db->select('Date,WorkDone,ordermaster.TotalWork,ordermaster.ProjectDeadline');
 		$this->db->select ( 'dailyworkmaster.*' );
 		$this->db->from ( 'dailyworkmaster' );
+		$this->db->where ( 'dailyworkmaster.WorkDone', 0 );
 		if ($proj != 'ALL') {
 			$this->db->join ( 'ordermaster', 'ordermaster.OrderId=dailyworkmaster.OrderId' );
 			$this->db->where ( 'ordermaster.ProjectName', $proj );
@@ -129,6 +138,7 @@ class generatelistmodel extends CI_Model {
 		$this->db->select ( 'dailyworkmaster.*,ordermaster.ProjectName' );
 		$this->db->from ( 'dailyworkmaster' );
 		$this->db->join ( 'ordermaster', 'ordermaster.OrderId=dailyworkmaster.OrderId' );
+		$this->db->where ( 'dailyworkmaster.WorkDone', 0 );
 		if ($cat != 'ALL') {
 			if ($cat == 'null')
 				$this->db->where ( 'dailyworkmaster.TypeOfIssue', NULL );
@@ -182,21 +192,11 @@ class generatelistmodel extends CI_Model {
 	function get_headwise($headid = '', $from = '', $to = '') {
 		$this->load->database ();
 		$this->db->order_by ( 'dailyworkmaster.OrderId', 'asc' );
-		// $this->db->select('Date,WorkDone,ordermaster.TotalWork,ordermaster.ProjectDeadline');
 		$this->db->select ( 'dailyworkmaster.WorkDone' );
 		$this->db->select ( 'ordermaster.ProjectName,ordermaster.CostPerUnit' );
 		$this->db->from ( 'dailyworkmaster' );
 		$this->db->join ( 'ordermaster', 'ordermaster.OrderId=dailyworkmaster.OrderId' );
 		$this->db->where ( 'dailyworkmaster.HeadId', $headid );
-		
-		/*
-		 * if ($cat!='ALL') {
-		 * if ($cat=='null')
-		 * $this->db->where('dailyworkmaster.TypeOfIssue',NULL);
-		 * else
-		 * $this->db->where('dailyworkmaster.TypeOfIssue',$cat);
-		 * }
-		 */
 		if ($from != '') {
 			$this->db->where ( 'dailyworkmaster.Date >=', $from );
 		}

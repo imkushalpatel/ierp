@@ -598,7 +598,6 @@ class CI_Security {
 				'%3b', // ;
 				'%3d' 
 		); // =
-
 		
 		if (! $relative_path) {
 			$bad [] = './';
