@@ -240,6 +240,7 @@ class CI_Config {
 	 *
 	 *
 	 *
+	 *
 	 * index_page [. uri_string]
 	 *
 	 * @access public
